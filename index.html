@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arafat Doner&Kebab — Ялта</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #090909;
+    color: white;
+    font-family: Montserrat, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+/* NAVBAR */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 75px;
+    z-index: 100;
+    background: rgba(10,10,10,.75);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #252525;
+}
+
+.nav {
+    max-width: 1200px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.links {
+    display: flex;
+    gap: 30px;
+    color: #ccc;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.links a {
+    transition: .25s;
+}
+
+.links a:hover {
+    color: #e52b2b;
+}
+
+.cart-btn {
+    background: #e52b2b;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+    color: white;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 850px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background:
+        linear-gradient(90deg, rgba(0,0,0,.9), rgba(0,0,0,.45)),
+        url("hero.jpg") center/cover;
+}
+
+.hero-content {
+    width: min(1200px, 92%);
+    margin: auto;
+    padding-top: 70px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 9px 15px;
+    border: 1px solid #444;
+    background: rgba(255,255,255,.08);
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-family: Oswald;
+    font-size: clamp(60px, 10vw, 115px);
+    line-height: .9;
+    margin: 25px 0;
+    text-transform: uppercase;
+}
+
+.hero h1 span {
+    color: #e52b2b;
+}
+
+.hero p {
+    color: #ccc;
+    max-width: 570px;
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 16px 23px;
+    border-radius: 13px;
+    font-weight: 800;
+    transition: .25s;
+}
+
+.red {
+    background: #e52b2b;
+}
+
+.dark {
+    background: rgba(255,255,255,.1);
+    border: 1px solid #444;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+}
+
+/* INFO */
+
+.info {
+    max-width: 1100px;
+    margin: -65px auto 0;
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background: #171717;
+    border: 1px solid #292929;
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.info-item {
+    padding: 25px;
+    border-right: 1px solid #292929;
+}
+
+.info-item:last-child {
+    border: none;
+}
+
+.info-item small {
+    display: block;
+    color: #888;
+    margin-bottom: 7px;
+}
+
+/* SECTIONS */
+
+section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 110px 20px;
+}
+
+.section-title {
+    margin-bottom: 40px;
+}
+
+.section-title span {
+    color: #e52b2b;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.section-title h2 {
+    font-family: Oswald;
+    font-size: 60px;
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+/* FILTERS */
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.filter {
+    background: #181818;
+    color: #aaa;
+    border: 1px solid #292929;
+    padding: 11px 17px;
+    border-radius: 30px;
+    font-weight: 700;
+}
+
+.filter.active,
+.filter:hover {
+    background: #e52b2b;
+    color: white;
+}
+
+/* MENU */
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+}
+
+.card {
+    background: #151515;
+    border: 1px solid #292929;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: .35s;
+}
+
+.card:hover {
+    transform: translateY(-9px);
+    border-color: #e52b2b;
+    box-shadow: 0 25px 60px rgba(0,0,0,.4);
+}
+
+.card-img {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.card:hover img {
+    transform: scale(1.08);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card h3 {
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.6;
+    min-height: 40px;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.add {
+    background: white;
+    color: black;
+    padding: 9px 12px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.add:hover {
+    background: #e52b2b;
+    color: white;
+}
+
+/* ABOUT */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.about-img {
+    height: 500px;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-text {
+    background: #151515;
+    border: 1px solid #292929;
+    border-radius: 25px;
+    padding: 45px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.about-text h2 {
+    font-family: Oswald;
+    font-size: 52px;
+}
+
+.about-text p {
+    color: #999;
+    line-height: 1.8;
+    margin-top: 20px;
+}
+
+/* CONTACT */
+
+.contacts {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.contact {
+    padding: 28px;
+    background: #151515;
+    border: 1px solid #292929;
+    border-radius: 20px;
+}
+
+.contact small {
+    color: #777;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.contact strong {
+    font-size: 19px;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid #292929;
+    padding: 35px 20px;
+    color: #666;
+    text-align: center;
+}
+
+/* CART */
+
+.cart {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 360px;
+    max-width: calc(100% - 40px);
+    background: #181818;
+    border: 1px solid #333;
+    border-radius: 22px;
+    padding: 22px;
+    z-index: 200;
+    box-shadow: 0 30px 80px #000;
+    transform: translateY(150%);
+    transition: .4s;
+}
+
+.cart.open {
+    transform: translateY(0);
+}
+
+.cart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.close {
+    background: #333;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #292929;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.order {
+    width: 100%;
+    margin-top: 18px;
+    padding: 15px;
+    background: #e52b2b;
+    color: white;
+    border-radius: 12px;
+    font-weight: 800;
+}
+
+/* ANIMATION */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: .8s;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
+
+    .links {
+        display: none;
+    }
+
+    .menu {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .contacts {
+        grid-template-columns: 1fr;
+    }
+
+    .info {
+        width: 92%;
+        grid-template-columns: 1fr;
+    }
+
+    .info-item {
+        border-right: none;
+        border-bottom: 1px solid #292929;
+    }
+
+}
+
+@media(max-width:550px) {
+
+    .hero {
+        min-height: 720px;
+    }
+
+    .hero h1 {
+        font-size: 60px;
+    }
+
+    .menu {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h2 {
+        font-size: 45px;
+    }
+
+    .about-text {
+        padding: 28px;
+    }
+
+    .about-text h2 {
+        font-size: 40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="nav">
+
+<a class="logo" href="#">
+<img src="logo.jpg">
+<span>Arafat Doner&Kebab</span>
+</a>
+
+<div class="links">
+<a href="#menu">Меню</a>
+<a href="#about">О нас</a>
+<a href="#contacts">Контакты</a>
+</div>
+
+<button class="cart-btn" onclick="openCart()">
+🛒 <span id="count">0</span>
+</button>
+
+</div>
+</nav>
+
+
+<header class="hero">
+
+<div class="hero-content">
+
+<div class="badge">🔥 Быстрое питание • Ялта</div>
+
+<h1>
+ВКУС<br>
+КОТОРЫЙ<br>
+<span>ЗАПОМНИТСЯ</span>
+</h1>
+
+<p>
+Донеры, кебаб, бургеры и горячие блюда.
+Готовим вкусно, сытно и прямо для тебя.
+</p>
+
+<div class="buttons">
+<a href="#menu" class="btn red">Смотреть меню</a>
+<a href="tel:+79782920044" class="btn dark">Позвонить</a>
+</div>
+
+</div>
+
+</header>
+
+
+<div class="info">
+
+<div class="info-item">
+<small>📍 Адрес</small>
+<strong>Киевская ул., 68А</strong>
+</div>
+
+<div class="info-item">
+<small>⭐ Рейтинг</small>
+<strong>4.3 / 5.0</strong>
+</div>
+
+<div class="info-item">
+<small>📞 Телефон</small>
+<strong>+7 (978) 292-00-44</strong>
+</div>
+
+</div>
+
+
+<section id="menu">
+
+<div class="section-title">
+<span>НАШЕ МЕНЮ</span>
+<h2>Выбирай любимое</h2>
+</div>
+
+<div class="filters">
+<button class="filter active" onclick="filterMenu('all',this)">Все</button>
+<button class="filter" onclick="filterMenu('burger',this)">Бургеры</button>
+<button class="filter" onclick="filterMenu('lagman',this)">Лагман</button>
+<button class="filter" onclick="filterMenu('doner',this)">Донер</button>
+</div>
+
+
+<div class="menu">
+
+<div class="card reveal burger">
+<div class="card-img">
+<img src="burgers.jpg">
+</div>
+<div class="card-body">
+<h3>Чизбургер</h3>
+<p>Сочная котлета, сыр, овощи и фирменный соус.</p>
+<div class="card-bottom">
+<span class="price">300 ₽</span>
+<button class="add" onclick="add('Чизбургер',300)">+ Добавить</button>
+</div>
+</div>
+</div>
+
+
+<div class="card reveal burger">
+<div class="card-img">
+<img src="burgers.jpg">
+</div>
+<div class="card-body">
+<h3>Гамбургер</h3>
+<p>Классический бургер с сочной котлетой.</p>
+<div class="card-bottom">
+<span class="price">280 ₽</span>
+<button class="add" onclick="add('Гамбургер',280)">+ Добавить</button>
+</div>
+</div>
+</div>
+
+
+<div class="card reveal lagman">
+<div class="card-img">
+<img src="lagman.jpg">
+</div>
+<div class="card-body">
+<h3>Лагман</h3>
+<p>Домашняя лапша, мясо и овощи.</p>
+<div class="card-bottom">
+<span class="price">350 ₽</span>
+<button class="add" onclick="add('Лагман',350)">+ Добавить</button>
+</div>
+</div>
+</div>
+
+
+<div class="card reveal lagman">
+<div class="card-img">
+<img src="lagman.jpg">
+</div>
+<div class="card-body">
+<h3>Лагман жареный</h3>
+<p>Обжаренная лапша с мясом и овощами.</p>
+<div class="card-bottom">
+<span class="price">300 ₽</span>
+<button class="add" onclick="add('Лагман жареный',300)">+ Добавить</button>
+</div>
+</div>
+</div>
+
+
+<div class="card reveal lagman">
+<div class="card-img">
+<img src="lagman.jpg">
+</div>
+<div class="card-body">
+<h3>Куриный суп</h3>
+<p>Курица, вермишель и горячий ароматный бульон.</p>
+<div class="card-bottom">
+<span class="price">220 ₽</span>
+<button class="add" onclick="add('Куриный суп',220)">+ Добавить</button>
+</div>
+</div>
+</div>
+
+
+<div class="card reveal doner">
+<div class="card-img">
+<img src="hero.jpg">
+</div>
+<div class="card-body">
+<h3>Донер</h3>
+<p>Мясо, свежие овощи и фирменный соус.</p>
+<div class="card-bottom">
+<span class="price">320 ₽</span>
+<button class="add" onclick="add('Донер',320)">+ Добавить</button>
+</div>
+</div>
+</div>
+
+
+<div class="card reveal doner">
+<div class="card-img">
+<img src="hero.jpg">
+</div>
+<div class="card-body">
+<h3>Кебаб</h3>
+<p>Ароматное мясо и свежие овощи.</p>
+<div class="card-bottom">
+<span class="price">350 ₽</span>
+<button class="add" onclick="add('Кебаб',350)">+ Добавить</button>
+</div>
+</div>
+</div>
+
+
+<div class="card reveal doner">
+<div class="card-img">
+<img src="hero.jpg">
+</div>
+<div class="card-body">
+<h3>Хот-дог</h3>
+<p>Горячая булочка, начинка и фирменный соус.</p>
+<div class="card-bottom">
+<span class="price">220 ₽</span>
+<button class="add" onclick="add('Хот-дог',220)">+ Добавить</button>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section id="about">
+
+<div class="about">
+
+<div class="about-img reveal">
+<img src="hero.jpg">
+</div>
+
+<div class="about-text reveal">
+
+<span style="color:#e52b2b;font-weight:800">
+ARAFAT DONER&KEBAB
+</span>
+
+<h2>Готовим<br>с душой ❤️</h2>
+
+<p>
+Arafat Doner&Kebab — место для тех,
+кто любит горячую, сытную и вкусную еду.
+Донеры, кебаб, бургеры и домашние блюда —
+всё в одном месте.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="contacts">
+
+<div class="section-title">
+<span>МЫ ЖДЁМ ТЕБЯ</span>
+<h2>Контакты</h2>
+</div>
+
+<div class="contacts">
+
+<div class="contact">
+<small>📍 Адрес</small>
+<strong>Киевская ул., 68А</strong>
+</div>
+
+<div class="contact">
+<small>📞 Телефон</small>
+<strong>+7 (978) 292-00-44</strong>
+</div>
+
+<div class="contact">
+<small>⭐ Рейтинг</small>
+<strong>4.3 / 5</strong>
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+© 2026 Arafat Doner&Kebab • Ялта
+</footer>
+
+
+<!-- CART -->
+
+<div class="cart" id="cart">
+
+<div class="cart-head">
+<h3>Корзина</h3>
+<button class="close" onclick="closeCart()">×</button>
+</div>
+
+<div id="cartItems"></div>
+
+<div class="total">
+<span>Итого:</span>
+<span id="total">0 ₽</span>
+</div>
+
+<button class="order" onclick="order()">
+Оформить заказ
+</button>
+
+</div>
+
+
+<script>
+
+let cart = [];
+let total = 0;
+
+function add(name, price) {
+
+    cart.push({
+        name:name,
+        price:price
+    });
+
+    total += price;
+
+    document.getElementById("count").textContent = cart.length;
+
+    updateCart();
+
+    document.getElementById("cart").classList.add("open");
+}
+
+
+function updateCart() {
+
+    let box = document.getElementById("cartItems");
+
+    box.innerHTML = "";
+
+    cart.forEach((item,index) => {
+
+        box.innerHTML += `
+        <div class="cart-item">
+            <span>${item.name}</span>
+            <b>${item.price} ₽</b>
+        </div>
+        `;
+
+    });
+
+    document.getElementById("total").textContent = total + " ₽";
+}
+
+
+function openCart() {
+    document.getElementById("cart").classList.add("open");
+}
+
+
+function closeCart() {
+    document.getElementById("cart").classList.remove("open");
+}
+
+
+function order() {
+
+    if(cart.length === 0) {
+        alert("Корзина пустая 😎");
+        return;
+    }
+
+    let text = "Здравствуйте! Хочу заказать:%0A%0A";
+
+    cart.forEach(item => {
+        text += "• " + item.name + " — " + item.price + " ₽%0A";
+    });
+
+    text += "%0AИтого: " + total + " ₽";
+
+    window.location.href =
+        "https://wa.me/79782920044?text=" + text;
+}
+
+
+function filterMenu(type, button) {
+
+    document.querySelectorAll(".filter")
+        .forEach(x => x.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.querySelectorAll(".card")
+        .forEach(card => {
+
+            if(type === "all" || card.classList.contains(type)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+}
+
+
+/* SCROLL ANIMATION */
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+
+    });
+
+},{
+    threshold:.12
+});
+
+
+document.querySelectorAll(".reveal")
+.forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+  </html>
